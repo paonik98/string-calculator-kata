@@ -7,11 +7,14 @@ public class Main {
             System.out.println("\"\"   =  " + add(""));
             System.out.println("\"1,2\"   =  " + add("1,2"));
             System.out.println("\"1,2\\n3\"   =  " + add("1,2\n3"));
+            System.out.println("\"1,12,78,450\\n3\"   =  " + add("1,12\n78,450\n3"));
             System.out.println("//;\\\\n1;2   =  " + add("//;\n1;2"));
             System.out.println("//;\\\\n1;2;9   =  " + add("//;\n1;2;9"));
             System.out.println("//;\\\\n1;2\\n7   =  " + add("//;\n1;2\n7"));
-            //System.out.println("//;\\\\n1;2\\n7;-3   =  " + add("//;\n1;2\n7;-3"));
+            //System.out.println("//;\\\\n1;2\\n7;-3   =  " + add("//;\n1;2\n7;-3;6;4;-2"));
             System.out.println("//;\\\\n100;23\\n6   =  " + add("//;\n100;23\n6"));
+            System.out.println("//;\\\\n1p2\\n7p6  =  " + add("//p\n1p2\n7p6"));
+
 
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -24,15 +27,15 @@ public class Main {
         if (numbers.isEmpty()) return 0;    // if empty string return 0
 
         char symbol = ',';
-        if ( numbers.startsWith("//") ) {     // check for changing delimeter
-            symbol = numbers.charAt(2);
+        if ( numbers.startsWith("//") ) {     // check for changing delimeter string
+            symbol = numbers.charAt(2);         // save the new symbol
             //numbers = numbers.substring(4);
             numbers = numbers.split("\\n",2)[1];
         }
         //System.out.println(numbers);
 
 
-        String expr = symbol + "|\\n";
+        String expr = symbol + "|\\n";      // make the regular expression
         //System.out.println("expr = " + expr);
 
         String[] arr_str;
@@ -48,7 +51,7 @@ public class Main {
                 sum += n;
             }
             if (n < 0){
-                arr_negatives.add(n);
+                arr_negatives.add(n);       // save the negatives
                 failed = true;
             }
 
